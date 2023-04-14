@@ -1,8 +1,8 @@
 # ddev-craftcms-vite 
 
-Demo repository for CraftCMS + DDEV, including vite.
+Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite).
 
-- Status: work in progress
+- Status: 🚧 Work in progress 🚧
 - Local URL: https://ddev-craftcms-vite.ddev.site/
 
 ## Local setup (after clone)
@@ -78,7 +78,7 @@ server: {
 
 ```bash
 ddev npm init -y
-ddev npm install vite vite-plugin-restart postcss autoprefixer @vitejs/plugin-legacy 
+ddev npm install -D vite vite-plugin-restart postcss autoprefixer @vitejs/plugin-legacy sass
 ```
 
 Add the following scripts to `package.json`:
@@ -93,4 +93,20 @@ Add the following scripts to `package.json`:
 
 - [ ] TODO: Is @vitejs/plugin-legacy always needed? (https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms)
 
-6. 
+6. Edited `index.twig`, added craft-vite (and created `app.js` + `app.scss` file)
+
+```
+    {{ craft.vite.script("src/js/app.js") }} 
+```
+
+7. That's it, have fun!
+
+## Further resources
+
+- https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
+- https://github.com/szenario-fordesigners/craft-vite-starter / https://twitter.com/thomasbendl/status/1628741476355112962
+- More experiments and info about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
+
+Connect with the DDEV community on [Discord](https://discord.gg/hCZFfAMc5k)
+
+Thanks to the DDEV maintainers and DDEV open source community! 💚
