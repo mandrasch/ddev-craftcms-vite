@@ -1,0 +1,27 @@
+dateModified: 1681490291
+email:
+  fromEmail: admin@example.com
+  fromName: 'My CraftCMS vite site'
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    92ef85d4-f96d-4739-aa99-70fe342c4b92: 'My CraftCMS vite site' # My CraftCMS vite site
+    551cde3b-a203-4612-92e7-f4d487786702: Common # Common
+    896068a9-0d17-4750-b2d7-14c9dddd332d: 'My CraftCMS vite site' # My CraftCMS vite site
+plugins:
+  vite:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: solo
+  live: true
+  name: 'My CraftCMS vite site'
+  schemaVersion: 4.4.0.4
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  requireEmailVerification: true
