@@ -11,8 +11,9 @@ Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/c
 ddev start
 ddev composer install
 ddev craft install
-ddev npm install
 ddev craft plugin/install vite
+
+ddev npm install
 
 # Open your website, 
 ddev launch
@@ -20,6 +21,11 @@ ddev launch
 ddev npm run dev
 # and hit reload
 ```
+
+## Simulate production environment
+
+1. `ddev npm run build`
+2. Switch `CRAFT_ENVIRONMENT=dev` to `CRAFT_ENVIRONMENT=production` in `.env`
 
 ## How was this created?
 
