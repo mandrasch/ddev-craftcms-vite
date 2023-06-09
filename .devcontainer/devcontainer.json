@@ -22,5 +22,5 @@
         "label": "web https"
       }
     },
-    "postCreateCommand": "./.devcontainer/postCreateCommand.sh"
+    "postCreateCommand": "chmod +x ./.devcontainer/postCreateCommand.sh && ./.devcontainer/postCreateCommand.sh"
   }

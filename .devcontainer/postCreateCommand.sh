@@ -17,3 +17,4 @@ ddev composer install
 ddev npm install
 
 ddev craft install/craft --interactive=0 --username=admin --password=NewPassword --email=admin@example.com --site-name=Testsite
+ddev craft plugin/install vite
