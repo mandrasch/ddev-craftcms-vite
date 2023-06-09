@@ -5,7 +5,8 @@ set -ex
 # ddev default commands
 # (see: https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/#github-codespaces)
 ddev config global --omit-containers=ddev-router
-ddev config --auto && ddev debug download-images
+ddev config --auto 
+ddev debug download-images
 
 # setup our repo
 ddev start -y
