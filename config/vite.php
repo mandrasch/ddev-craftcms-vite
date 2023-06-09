@@ -8,7 +8,7 @@ use craft\helpers\App;
 $devServerPublic = App::env('PRIMARY_SITE_URL') . ':3000'; // default, local DDEV
 if (getenv('CODESPACES') !== false) {
 	// for codespaces
-	$devServerPublic = 'https://' . getenv('CODESPACE_NAME') . '-3000' . getenv('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN');
+	$devServerPublic = 'https://' . getenv('CODESPACE_NAME') . '-3000.' . getenv('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN');
 }
 
 return [
