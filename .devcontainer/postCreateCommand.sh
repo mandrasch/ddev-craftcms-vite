@@ -12,7 +12,7 @@ ddev debug download-images
 ddev start -y
 
 # replace primary site url with GitHub Codespaces URL (dynamic)
-ddev exec 'sed -i "/PRIMARY_SITE_URL=/c APP_URL=$DDEV_PRIMARY_URL" .env'
+ddev exec 'sed -i "/PRIMARY_SITE_URL=/c PRIMARY_SITE_URL=$DDEV_PRIMARY_URL" .env'
 
 ddev composer install
 ddev npm install
