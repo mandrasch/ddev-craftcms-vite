@@ -18,7 +18,9 @@ export default ({ command }) => ({
     // for ddev:
     server: {
         host: '0.0.0.0',
-        port: 3000
+        port: 3000,
+        // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
+        origin: `${process.env.DDEV_PRIMARY_URL}:5173`
     },
     plugins: [
         ViteRestart({
