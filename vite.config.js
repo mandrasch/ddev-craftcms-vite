@@ -17,8 +17,9 @@ export default ({ command }) => ({
     },
     // for ddev:
     server: {
+        // respond to all network requests:
         host: '0.0.0.0',
-        port: 3000,
+        port: 5173,
         // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
         origin: `${process.env.DDEV_PRIMARY_URL}:5173`
     },
