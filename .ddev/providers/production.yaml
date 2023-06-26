@@ -8,7 +8,7 @@
 # server or other jumphost. It operates inside the web container and uses
 # ssh, so you need to `ddev auth ssh` first (or enter passwords multiple times)
 
-# TODO: move file_imports_command to database step, use db_import_command?
+# Docs: https://ddev.readthedocs.io/en/latest/users/providers/
 
 environment_variables:
   sshUser: ssh-user-1
@@ -82,6 +82,7 @@ files_pull_command:
 # We use this step to run some important CLI commands locally after pull
 # (If you use 'ddev pull live --skip-files' for db sync only, you need to
 # run 'ddev craft project-config/apply' manually)
+# TODO: move file_imports_command to database step, use db_import_command and import db first?
 files_import_command:
   command: |
     # set -x  # You can enable bash debugging output by uncommenting
