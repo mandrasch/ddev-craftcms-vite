@@ -39,23 +39,23 @@ db_pull_command:
     ssh ${sshUser}@${sshHost} -p ${sshPort} "cd ${sshPath} && bash -s" <<'ENDSSH'
       #set -x # uncomment for debug
       mkdir -p ./storage/backups      
-      php craft db/backup "./storage/backups/backup-pull-$backupid.sql"
+      php craft db/backup "./storage/backups/db-backup-pull-$backupid.sql"
     ENDSSH
 
     # rsync to local .ddev/.downloads/ folder
     echo "Rsyncing backup file to local .ddev/.downloads/ directory ..."
-    rsync -avz -e "ssh -p ${sshPort}" "${sshUser}@${sshHost}:${sshPath}/storage/backups/backup-pull-${backupid}.sql" /var/www/html/.ddev/.downloads/
+    rsync -avz -e "ssh -p ${sshPort}" "${sshUser}@${sshHost}:${sshPath}/storage/backups/db-backup-pull-${backupid}.sql" /var/www/html/.ddev/.downloads/
 
     # TODO: test variables usage in heredoc commands
     # remove the backup from remote host
     ssh ${sshUser}@${sshHost} -p ${sshPort} "cd ${sshPath} && bash -s" <<'ENDSSH'
       #set -x # uncomment for debug
-      rm "./storage/backups/backup-pull-$backupid.sql"
+      rm "./storage/backups/db-backup-pull-$backupid.sql"
     ENDSSH
 
     # DDEV will import a db.sql.gz file automatically, therefore we rename & compress it as gzip:
     echo "DDEV will import db.sql.gz files automatically in this step, renaming it ..."
-    mv ".ddev/.downloads/backup-pull-${backupid}.sql" .ddev/.downloads/db.sql
+    mv ".ddev/.downloads/db-backup-pull-${backupid}.sql" .ddev/.downloads/db.sql
     gzip -9 .ddev/.downloads/db.sql
 
   service: web
