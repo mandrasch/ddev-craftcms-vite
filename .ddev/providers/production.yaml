@@ -62,6 +62,23 @@ db_pull_command:
 
   service: web
 
+db_import_command:
+  service: host
+  command: |
+    # this step is called from host computer, therefore ddev is in front of commands
+    set -eu -o pipefail
+
+    # uncomment for debug
+    # set -x
+
+    # import database
+    echo "Starting the database import ..."
+    ddev import-db --src=".ddev/.downloads/db.sql"
+
+    # run neccessary commands for craft after we pull a db:
+    echo "Starting craft project-config/apply ..."
+    ddev craft project-config/apply
+
 files_pull_command:
   command: |
     # set -x   # You can enable bash debugging output by uncommenting
@@ -79,20 +96,10 @@ files_pull_command:
     # TODO: maybe add --delete (delete files locally which are not on remote anymore,
   service: web
 
-# We use this step to run some important CLI commands locally after pull
-# (If you use 'ddev pull live --skip-files' for db sync only, you need to
-# run 'ddev craft project-config/apply' manually)
-# TODO: move file_imports_command to database step, use db_import_command and import db first?
 files_import_command:
+  service: web
   command: |
     # set -x  # You can enable bash debugging output by uncommenting
     set -eu -o pipefail
-    pushd "/var/www/html/${DDEV_DOCROOT}" >/dev/null
-
-    # these commands run inside DDEV web container, therefore no
-    # 'ddev craft ...' is needed because we are already inside
-    echo "Applying config changes via ./craft project-config/apply"
-    cd /var/www/html/
-    php craft project-config/apply
-
-  service: web
+    pushd /var/www/html/.ddev/.downloads >/dev/null
+    # we don't need to do something here currently after rsyncing the commands
