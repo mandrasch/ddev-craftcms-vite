@@ -14,13 +14,22 @@ let origin = `${process.env.DDEV_PRIMARY_URL}:${port}`;
 // DDEV + codespaces (without ddev-router), switch port to 5174
 // (you need to switch the port manually to HTTPS + public on codespaces)
 if (Object.prototype.hasOwnProperty.call(process.env, 'CODESPACES')) {
-    console.log('Codespaces environment detected:', {
+    console.log('Codespaces environment detected ...');
+    
+    port = 5174;
+    origin = `https://${process.env.CODESPACE_NAME}-${port}.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
+
+    console.log('Setting config to ', {port,origin});
+
+    console.log("Please check that this can be opened via browser after you run 'ddev npm run dev':");
+    console.log(origin + '/src/js/app.js');
+    console.log('If it can\'t be opened, please switch the vite port to https and then to public in the ports tab.');
+
+    /* console.log({
         'CODESPACES' : process.env?.CODESPACES,
         'CODESPACE_NAME' : process.env?.CODESPACE_NAME,
         'GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN': process.env?.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
-    });
-    port = 5174;
-    origin = `https://${process.env.CODESPACE_NAME}-${port}.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
+    });*/
 }else{
     console.log('Local DDEV detected',{
         port, origin
@@ -36,7 +45,7 @@ export default ({ command }) => ({
     base: command === 'serve' ? '' : '/dist/',
     build: {
         manifest: true,
-        outDir: '../cms/web/dist/',
+        outDir: 'web/dist/',
         rollupOptions: {
             input: {
                 app: './src/js/app.js',
