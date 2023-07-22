@@ -32,10 +32,16 @@ ddev npm run dev
 ## Codespaces support
 
 1. [Open in codespaces](https://codespaces.new/mandrasch/ddev-craftcms-vite/)
-2. Wait for postCreateCommand to finish, see status via SHIFT + CMD + P => "Codespaces: View creation log". This can take some minutes.
-2. After the project was successfully built on codespaces, you need to switch the vite port 5174 to public + HTTPS (?), otherwise you'll see CORS errors in the javascript devtools console.
-3. Run `ddev launch && ddev npm run dev` to start vite, reload browser
-4. Access control panel via `ddev launch /admin` and user `admin` - `newPassword`
+2. Wait for postCreateCommand to finish, see status via SHIFT + CMD + P => "Codespaces: View creation log". This can take several minutes (hope we find ways to cache/speed things up in future).
+
+- [ ] TODO: add screenshot here
+
+3. After the project was successfully built on codespaces, you need to switch the vite port 5174 to public + HTTPS (?), otherwise you'll see CORS errors in the javascript devtools console.
+
+- [ ] TODO: add screenshot here
+
+4. Run `ddev launch && ddev npm run dev` to start vite, reload browser
+5. Access control panel via `ddev launch /admin` and user `admin` - `newPassword`
 
 ### Technical background:
 
