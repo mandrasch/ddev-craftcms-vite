@@ -8,6 +8,8 @@ Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/c
 
 ## Local setup (after clone)
 
+_These are the steps for a regular local setup (without codespaces)._
+
 ```bash
 cd ddev-craftcms-vite/
 ddev start
@@ -32,16 +34,27 @@ ddev npm run dev
 ## Codespaces support
 
 1. [Open in codespaces](https://codespaces.new/mandrasch/ddev-craftcms-vite/)
-2. Wait for postCreateCommand to finish, see status via SHIFT + CMD + P => "Codespaces: View creation log". This can take several minutes (hope we find ways to cache/speed things up in future).
+
+2. Wait for postCreateCommand to finish
 
 - [ ] TODO: add screenshot here
 
-3. After the project was successfully built on codespaces, you need to switch the vite port 5174 to public + HTTPS (?), otherwise you'll see CORS errors in the javascript devtools console.
+You can see the status via SHIFT + CMD + P => "Codespaces: View creation log". This can take several minutes (hope we find ways to cache/speed things up in future).
+
+
+3. Switch the vite port to HTTPS and then to public
 
 - [ ] TODO: add screenshot here
 
-4. Run `ddev launch && ddev npm run dev` to start vite, reload browser
-5. Access control panel via `ddev launch /admin` and user `admin` - `newPassword`
+After the project was successfully built on codespaces, you need to switch the vite port 5174 to public + HTTPS (?), otherwise you'll see CORS errors in the javascript devtools console.
+
+The switch can take some time, just wait a minute if it doesn't work instantly.
+
+4. Run `ddev npm run dev` to start vites devserver
+
+5. Open your site in another console via `ddev launch``
+
+6. Access control panel via `ddev launch /admin` and user `admin` - `newPassword`
 
 ### Technical background:
 
