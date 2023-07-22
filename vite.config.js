@@ -1,18 +1,25 @@
-// https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
 // https://www.npmjs.com/package/vite-plugin-restart
 import ViteRestart from 'vite-plugin-restart';
-// TODO: import legacy from '@vitejs/plugin-legacy' ? (https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms)
 
-// https://github.com/vitejs/vite/pull/677#issuecomment-1473740472
-const codespaceName = process.env['CODESPACE_NAME'];
-const codespaceDomain = process.env['GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN'];
-const hmrPort = 5173;
+// TODO: import legacy from '@vitejs/plugin-legacy' ? 
+// (https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms)
 
-const hmrRemoteHost = codespaceName ? `${codespaceName}-${hmrPort}.${codespaceDomain}` : 'localhost';
-const hmrRemotePort = codespaceName ? 443 : hmrPort;
-const hmrRemoteProtocol = codespaceName ? 'wss' : 'ws';
+// defaults, local DDEV (with ddev-router)
+let port = 5173; 
+let origin = `${process.env.DDEV_PRIMARY_URL}:${port}`;
 
-console.log({codespaceName, codespaceDomain, hmrRemoteHost, hmrRemotePort, hmrRemoteProtocol});
+// DDEV + codespaces (without ddev-router), switch port to 5174
+// (you need to switch the port manually to HTTPS + public on codespaces)
+if (Object.prototype.hasOwnProperty.call(process.env, 'CODESPACES')) {
+    console.log('Codespaces environment detected', {
+        'CODESPACES' : process.env?.CODESPACES,
+        'CODESPACE_NAME' : process.env?.CODESPACE_NAME,
+        'GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN': process.env?.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+    });
+    port = 5174;
+    origin = `https://${process.env.CODESPACE_NAME}-${port}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
+}
+
 
 // Last step is to set 5173 to PUBLIC in the codespace, else you will get a CORS error. 
 // Unfortunately you cannot specify this in the .devcontainer
@@ -29,18 +36,14 @@ export default ({ command }) => ({
             }
         },
     },
-    // for ddev:
+    // adjustments for ddev:
     server: {
-        host: '0.0.0.0', // react to all incoming traffic
-        port: 5173,
-        // new - for codespaces:
-        // TODO: check if this works locally in DDEV as well...
-        hmr: {
-            protocol: hmrRemoteProtocol,
-            host: hmrRemoteHost,
-            port: hmrPort,
-            clientPort: hmrRemotePort
-        }
+        // respond to all network requests:
+        host: '0.0.0.0',
+        port: port,
+        strichPort: true, 
+        // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
+        origin: origin,
     },
     plugins: [
         ViteRestart({

@@ -1,0 +1,105 @@
+#############################################################################
+#                                                                           #
+#          BEWARE - NOT TESTED YET, PLEASE USE WITH CAUTION.                #
+#                                                                           #
+#############################################################################
+
+# This will pull a database and files from a network location, for example,
+# server or other jumphost. It operates inside the web container and uses
+# ssh, so you need to `ddev auth ssh` first (or enter passwords multiple times)
+
+# Docs: https://ddev.readthedocs.io/en/latest/users/providers/
+
+environment_variables:
+  sshUser: ssh-user-1
+  sshHost: example.com
+  sshPort: 22
+  # without trailing slash, e.g. /html/my-craft-project
+  sshPath: /html/my-craft-project
+
+ # This is needed when ssh keys are used instead of password for auth
+ auth_command:
+   command: |
+     set -eu -o pipefail
+     ssh-add -l >/dev/null || ( echo "Please 'ddev auth ssh' before running this command." && exit 1 )
+
+# create backup on remote, rsync to .ddev/downloads, import .ddev/.downloads/db.sql (automatically)
+db_pull_command:
+  command: |
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+
+    # create unique identifier to avoid issues for multiple pulls at same time
+    backupid=$(cat /proc/sys/kernel/random/uuid)
+    echo "Created unique identifier for backup: ${backupid} ..."
+
+    # create backup on remote via craft cli, create backups folder if not existent
+    # (remember to escape remote vars like \$SHELL if you need them, you can use this
+    # for debug: && echo \$SHELL && echo \$PATH && pwd && )
+
+    # TODO: test variables usage in heredoc commands
+    ssh ${sshUser}@${sshHost} -p ${sshPort} "cd ${sshPath} && bash -s" <<'ENDSSH'
+      #set -x # uncomment for debug
+      mkdir -p ./storage/backups      
+      php craft db/backup "./storage/backups/db-backup-pull-$backupid.sql"
+    ENDSSH
+
+    # rsync to local .ddev/.downloads/ folder
+    echo "Rsyncing backup file to local .ddev/.downloads/ directory ..."
+    rsync -avz -e "ssh -p ${sshPort}" "${sshUser}@${sshHost}:${sshPath}/storage/backups/db-backup-pull-${backupid}.sql" /var/www/html/.ddev/.downloads/
+
+    # TODO: test variables usage in heredoc commands
+    # remove the backup from remote host
+    ssh ${sshUser}@${sshHost} -p ${sshPort} "cd ${sshPath} && bash -s" <<'ENDSSH'
+      #set -x # uncomment for debug
+      rm "./storage/backups/db-backup-pull-$backupid.sql"
+    ENDSSH
+
+    # DDEV will import a db.sql.gz file automatically, therefore we rename & compress it as gzip:
+    echo "DDEV will import db.sql.gz files automatically in this step, renaming it ..."
+    mv ".ddev/.downloads/db-backup-pull-${backupid}.sql" .ddev/.downloads/db.sql
+    gzip -9 .ddev/.downloads/db.sql
+
+  service: web
+
+db_import_command:
+  service: host
+  command: |
+    # this step is called from host computer, therefore ddev is in front of commands
+    set -eu -o pipefail
+
+    # uncomment for debug
+    # set -x
+
+    # import database
+    echo "Starting the database import ..."
+    ddev import-db --src=".ddev/.downloads/db.sql"
+
+    # run neccessary commands for craft after we pull a db:
+    echo "Starting craft project-config/apply ..."
+    ddev craft project-config/apply
+
+files_pull_command:
+  command: |
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    ls /var/www/html/.ddev >/dev/null # This just refreshes stale NFS if possible
+
+    echo "Downloading /web/ asset directories (upload directories) from remote ..."
+    # exclude some common directories, based on rsync v3
+    rsync -ahvz --stats \
+      --exclude 'index.php' --exclude 'web.config' --exclude '.htaccess' \
+      --exclude '*cache/*' --exclude '*cpresources/*' --exclude '*dist/*'  \
+      -e "ssh -p ${sshPort}" \
+      "${sshUser}@${sshHost}:${sshPath}/web/" /var/www/html/web/
+
+    # TODO: maybe add --delete (delete files locally which are not on remote anymore,
+  service: web
+
+files_import_command:
+  service: web
+  command: |
+    # set -x  # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd /var/www/html/.ddev/.downloads >/dev/null
+    # we don't need to do something here currently after rsyncing the commands

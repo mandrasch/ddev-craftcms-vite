@@ -63,9 +63,9 @@ ddev craft plugin/install vite
 ```yaml
 web_extra_exposed_ports:
   - name: craft-vite
-    container_port: 3000
-    http_port: 2999
-    https_port: 3000
+    container_port: 5173
+    http_port: 5172
+    https_port: 5173
 ```
 
 ⚠️ `ddev restart` is needed afterwards
@@ -74,10 +74,14 @@ web_extra_exposed_ports:
 
 ```javascript
 /* vite.config.js */
-server: {
-  host: '0.0.0.0',
-  port: 3000
-}
+    // for ddev:
+    server: {
+        // respond to all network requests:
+        host: '0.0.0.0',
+        port: 5173,
+        // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
+        origin: `${process.env.DDEV_PRIMARY_URL}:5173`
+    },
 ```
 
 5. Install npm deps, as stated here: https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
@@ -113,6 +117,9 @@ Add the following scripts to `package.json`:
 - https://github.com/szenario-fordesigners/craft-vite-starter / https://twitter.com/thomasbendl/status/1628741476355112962
 - More experiments and info about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
 
+
 Connect with the DDEV community on [Discord](https://discord.gg/hCZFfAMc5k)
 
 Thanks to the DDEV maintainers and DDEV open source community! 💚
+
+
