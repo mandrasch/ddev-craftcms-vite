@@ -44,6 +44,6 @@ ddev composer install
 ddev npm install
 
 # install craft via CLI
-ddev craft install/craft --interactive=0 --username=admin --password=NewPassword --email=admin@example.com --site-name=Testsite
+ddev craft install/craft --interactive=0 --username=admin --password=newPassword --email=admin@example.com --site-name=Testsite
 ddev craft plugin/install vite
 
