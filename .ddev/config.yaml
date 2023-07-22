@@ -15,7 +15,11 @@ nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
-web_environment: []
+# inherit env vars from host environment, thx rfay!
+web_environment: 
+    - CODESPACES
+    - CODESPACE_NAME
+    - GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
 nodejs_version: "18"
 web_extra_exposed_ports:
   - name: craft-vite

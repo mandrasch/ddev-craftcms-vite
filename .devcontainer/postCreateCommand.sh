@@ -15,7 +15,7 @@ ddev poweroff
 # start ddev project
 ddev start -y
 
-# TODO: is this done automatically?
+# TODO: is this done automatically anyhow?
 # replace primary site url with GitHub Codespaces URL (dynamic)
 ddev exec 'sed -i "/PRIMARY_SITE_URL=/c APP_URL=$DDEV_PRIMARY_URL" .env'
 
@@ -31,13 +31,6 @@ services:
 EOL
 
 ddev restart
-
-# Add env vars for codespaces to craft, needed for config/vite.php
-# (find better solution for this? is this set automatically by DDEV?)
-echo "CODESPACES=true" >> .env
-echo "CODESPACE_NAME=\"${CODESPACE_NAME}\"" >> .env
-echo "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN=\"${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}\"" >> .env
-# TODO: this will be appended on regular rebuilds, check if already set & replace
 
 # normal project setup
 ddev composer install
