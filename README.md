@@ -4,10 +4,12 @@ Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/c
 
 - Status: 🚧 Work in progress 🚧
 - Local URL: https://ddev-craftcms-vite.ddev.site/
+- **new**: [Open in codespaces](https://codespaces.new/mandrasch/ddev-craftcms-vite/)
 
 ## Local setup (after clone)
 
 ```bash
+cd ddev-craftcms-vite/
 ddev start
 ddev composer install
 ddev craft install
@@ -26,6 +28,26 @@ ddev npm run dev
 
 1. `ddev npm run build`
 2. Switch `CRAFT_ENVIRONMENT=dev` to `CRAFT_ENVIRONMENT=production` in `.env`
+
+## Codespaces support
+
+1. [Open in codespaces](https://codespaces.new/mandrasch/ddev-craftcms-vite/)
+2. Wait for postCreateCommand to finish, see status via SHIFT + CMD + P => "Codespaces: View creation log". This can take some minutes.
+2. After the project was successfully built on codespaces, you need to switch the vite port 5174 to public + HTTPS (?), otherwise you'll see CORS errors in the javascript devtools console.
+3. Run `ddev launch && ddev npm run dev` to start vite, reload browser
+4. Access control panel via `ddev launch /admin` and user `admin` - `newPassword`
+
+### Technical background:
+
+Since the ddev router is not used on codespaces, the vite setup requires some adjustments. To access vite we expose another port (5174) via `.ddev/docker-compose.codespaces-vite.yaml`, this file is generated on codespace start up (and gitignored). We need to adjust some config values in `config/vite.php` and `vite.config.js` as well when codespaces is used. I implemented this via `.env`. 
+
+See `.devcontainers/postCreateCommand.sh` for all steps.
+
+### Troubleshooting
+
+Sometimes only a rebuild or full rebuild solves problems, use `SHIFT + CMD + P > Codespaces: Full rebuild`.
+
+Especially `Could not connect to a docker provider. Please start or install a docker provider.` occurs from time to time, could not figure out why exactly yet. Please make sure you're using `"ghcr.io/devcontainers/features/docker-in-docker:2": {},`. 
 
 ## How was this created?
 
@@ -79,6 +101,7 @@ web_extra_exposed_ports:
         // respond to all network requests:
         host: '0.0.0.0',
         port: 5173,
+        strichPort = true,
         // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
         origin: `${process.env.DDEV_PRIMARY_URL}:5173`
     },
@@ -121,5 +144,3 @@ Add the following scripts to `package.json`:
 Connect with the DDEV community on [Discord](https://discord.gg/hCZFfAMc5k)
 
 Thanks to the DDEV maintainers and DDEV open source community! 💚
-
-

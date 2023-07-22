@@ -8,16 +8,23 @@ import ViteRestart from 'vite-plugin-restart';
 let port = 5173; 
 let origin = `${process.env.DDEV_PRIMARY_URL}:${port}`;
 
+// for debugging:
+// console.log(process.env);
+
 // DDEV + codespaces (without ddev-router), switch port to 5174
 // (you need to switch the port manually to HTTPS + public on codespaces)
 if (Object.prototype.hasOwnProperty.call(process.env, 'CODESPACES')) {
-    console.log('Codespaces environment detected', {
+    console.log('Codespaces environment detected:', {
         'CODESPACES' : process.env?.CODESPACES,
         'CODESPACE_NAME' : process.env?.CODESPACE_NAME,
         'GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN': process.env?.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
     });
     port = 5174;
-    origin = `https://${process.env.CODESPACE_NAME}-${port}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
+    origin = `https://${process.env.CODESPACE_NAME}-${port}.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
+}else{
+    console.log('Local DDEV detected',{
+        port, origin
+    })
 }
 
 
