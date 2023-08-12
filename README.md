@@ -1,14 +1,60 @@
 # ddev-craftcms-vite 
 
-Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite).
+Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Just for demo purposes. Have fun with it!
 
-- Status: 🚧 Work in progress 🚧
-- Local URL: https://ddev-craftcms-vite.ddev.site/
-- **new**: [Open in codespaces](https://codespaces.new/mandrasch/ddev-craftcms-vite/)
+📣 New: Now with Codespaces support! 📣
+
+## Setup in Codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/mandrasch/ddev-craftcms-vite)
+
+1. Click the button
+1. Wait for `postCreateCommand.sh` to be finished
+1. Switch vite port to public in ports tab
+1. Run `npm run dev`
+1. Open site (web http) via ports tab (or use `ddev launch` in future (currently small bug to be fixed)).
+
+See all steps in this blog post:
+
+- 
+
+The port switch can take a minute. Just wait if it doesn't work instantly.
+
+Access control panel via `/admin` (or use in future `ddev launch /admin`, when small bug is fixed in ddev).
+
+Login via user `admin` and password `newPassword` .
+
+### Troubleshooting
+
+See creation log via 'CMD + P > View creation log' if errors occur. Unfortunately there is no notification when this fails.
+
+Sometimes only a rebuild or full rebuild solves problems, use
+
+- `SHIFT + CMD + P > Codespaces: Full rebuild` 
+
+Containers and db will be deleted.
+
+Especially `Could not connect to a docker provider. Please start or install a docker provider.` occurs from 1 time out of 5, could not figure out why exactly yet. Please always make sure you're using `"ghcr.io/devcontainers/features/docker-in-docker:2": {},`, not v1.
+
+Also `disk limit` errors occur from time to time as well.
+
+### Technical background: workaround for vite port
+
+Since the ddev router is not used on codespaces, the vite setup requires some adjustments. To access vite we expose another port (5174) via `.ddev/docker-compose.codespaces-vite.yaml`. This file is generated on codespace start up (and gitignored). 
+
+We needed to adjust some config values in `config/vite.php` and `vite.config.js` as well when codespaces is used. If codespace is used, the new port 5174 needs to be used (instead of the port 5173 for local DDEV setups).
+
+I implemented this via `.env`. 
+
+See `.devcontainers/postCreateCommand.sh` for all steps.
 
 ## Local setup (after clone)
 
-_These are the steps for a regular local setup (without codespaces)._
+The site will be available here after we're finished:
+
+- https://ddev-craftcms-vite.ddev.site/
+
+These are the steps for a regular local setup (without codespaces):
 
 ```bash
 cd ddev-craftcms-vite/
@@ -19,11 +65,11 @@ ddev craft plugin/install vite
 
 ddev npm install
 
-# Open your website, 
+# Open your website in browser,
 ddev launch
 # run local dev server (vite),
 ddev npm run dev
-# and hit reload
+# and hit reload in browser
 ```
 
 ## Simulate production environment
@@ -31,42 +77,6 @@ ddev npm run dev
 1. `ddev npm run build`
 2. Switch `CRAFT_ENVIRONMENT=dev` to `CRAFT_ENVIRONMENT=production` in `.env`
 
-## Codespaces support
-
-1. [Open in codespaces](https://codespaces.new/mandrasch/ddev-craftcms-vite/)
-
-2. Wait for postCreateCommand to finish
-
-- [ ] TODO: add screenshot here
-
-You can see the status via SHIFT + CMD + P => "Codespaces: View creation log". This can take several minutes (hope we find ways to cache/speed things up in future).
-
-
-3. Switch the vite port to HTTPS and then to public
-
-- [ ] TODO: add screenshot here
-
-After the project was successfully built on codespaces, you need to switch the vite port 5174 to public + HTTPS (?), otherwise you'll see CORS errors in the javascript devtools console.
-
-The switch can take some time, just wait a minute if it doesn't work instantly.
-
-4. Run `ddev npm run dev` to start vites devserver
-
-5. Open your site in another console via `ddev launch``
-
-6. Access control panel via `ddev launch /admin` and user `admin` - `newPassword`
-
-### Technical background:
-
-Since the ddev router is not used on codespaces, the vite setup requires some adjustments. To access vite we expose another port (5174) via `.ddev/docker-compose.codespaces-vite.yaml`, this file is generated on codespace start up (and gitignored). We need to adjust some config values in `config/vite.php` and `vite.config.js` as well when codespaces is used. I implemented this via `.env`. 
-
-See `.devcontainers/postCreateCommand.sh` for all steps.
-
-### Troubleshooting
-
-Sometimes only a rebuild or full rebuild solves problems, use `SHIFT + CMD + P > Codespaces: Full rebuild`.
-
-Especially `Could not connect to a docker provider. Please start or install a docker provider.` occurs from time to time, could not figure out why exactly yet. Please make sure you're using `"ghcr.io/devcontainers/features/docker-in-docker:2": {},`. 
 
 ## How was this created?
 
@@ -120,7 +130,7 @@ web_extra_exposed_ports:
         // respond to all network requests:
         host: '0.0.0.0',
         port: 5173,
-        strichPort = true,
+        strictPort = true,
         // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
         origin: `${process.env.DDEV_PRIMARY_URL}:5173`
     },
@@ -158,8 +168,8 @@ Add the following scripts to `package.json`:
 - https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
 - https://github.com/szenario-fordesigners/craft-vite-starter / https://twitter.com/thomasbendl/status/1628741476355112962
 - More experiments and info about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
-
+- Thanks to [@superflausch](https://github.com/superflausch) for a quick chat about Codespaces + vite integration
 
 Connect with the DDEV community on [Discord](https://discord.gg/hCZFfAMc5k)
 
-Thanks to the DDEV maintainers and DDEV open source community! 💚
+Thanks to the DDEV maintainers and DDEV open source community, especially [Randy Fay](https://github.com/rfay) for suggestions and feedback! 💚
