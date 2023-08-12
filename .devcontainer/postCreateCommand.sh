@@ -48,7 +48,7 @@ ddev craft install/craft \
   --interactive=0 \
   --username=admin \
   --password=newPassword \
-  --email=admin@example.com 
+  --email=admin@example.com \
   --site-name=Testsite
 
 # install the vite plugin by nystudio107
