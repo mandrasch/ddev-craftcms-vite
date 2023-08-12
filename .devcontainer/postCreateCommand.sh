@@ -10,7 +10,8 @@ set -ex
 # ddev default commands
 # see: https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/#github-codespaces
 ddev config global --omit-containers=ddev-router
-ddev config --auto
+# this is not necessary since we already have a .ddev/config.yaml
+# ddev config --auto
 ddev debug download-images
 
 # Rebuilds (not full rebuilds) are a bit tricky since some docker containers 
