@@ -57,7 +57,7 @@ export default ({ command }) => ({
         // respond to all network requests:
         host: '0.0.0.0',
         port: port,
-        strichPort: true, 
+        strictPort: true, 
         // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
         origin: origin,
     },
