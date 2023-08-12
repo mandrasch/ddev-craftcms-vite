@@ -2,11 +2,11 @@
 
 Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Just for demo purposes. Have fun with it!
 
-You can run this on your local laptop (via [docker + DDEV](https://ddev.com/)) or in GitHub Codespaces.
+You can run this in 1. GitHub Codespaces or 2. on your local laptop (via [docker + DDEV](https://ddev.com/)).
 
 📣 New: Now with Codespaces support! 📣
 
-## Setup in Codespaces
+## 1. Setup in Codespaces
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/mandrasch/ddev-craftcms-vite)
 
@@ -50,22 +50,27 @@ I implemented this via `.env`.
 
 See `.devcontainers/postCreateCommand.sh` for all steps.
 
-## Local setup (after clone)
+## 2. Local setup (after clone)
 
 The site will be available here after we're finished:
 
 - https://ddev-craftcms-vite.ddev.site/
 
-These are the steps for a regular local setup (without codespaces):
+These are the steps for a regular local setup (without codespaces:
 
 ```bash
 cd ddev-craftcms-vite/
-ddev start
-ddev composer install
-ddev craft install
-ddev craft plugin/install vite
+ddev start && ddev composer install && ddev npm install
 
-ddev npm install
+# will only prompt for password, other settings = leave defaults
+ddev craft install/craft \
+  --interactive=0 \
+  --username=admin \
+  --email=admin@example.com \
+  --site-name=Testsite
+
+# already installed in composer, but needs activation:
+ddev craft plugin/install vite
 
 # Open your website in browser,
 ddev launch

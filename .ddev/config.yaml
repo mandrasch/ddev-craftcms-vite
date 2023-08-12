@@ -15,7 +15,7 @@ nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
-# inherit env vars from host environment, thx rfay!
+# inherit env vars from host environment for codespaces, thx rfay!
 web_environment: 
     - CODESPACES
     - CODESPACE_NAME
