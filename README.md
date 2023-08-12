@@ -64,7 +64,6 @@ ddev start && ddev composer install && ddev npm install
 
 # will only prompt for password, other settings = leave defaults
 ddev craft install/craft \
-  --interactive=0 \
   --username=admin \
   --email=admin@example.com \
   --site-name=Testsite
