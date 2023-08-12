@@ -16,7 +16,7 @@ Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/c
 
 See all steps in this blog post:
 
-- 
+- https://dev.to/mandrasch/open-craftcms-in-github-codespaces-via-ddev-21he
 
 The port switch can take a minute. Just wait if it doesn't work instantly.
 
