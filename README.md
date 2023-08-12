@@ -2,6 +2,8 @@
 
 Simple demo repository for CraftCMS + DDEV, including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Just for demo purposes. Have fun with it!
 
+You can run this on your local laptop (via [docker + DDEV](https://ddev.com/)) or in GitHub Codespaces.
+
 📣 New: Now with Codespaces support! 📣
 
 ## Setup in Codespaces
