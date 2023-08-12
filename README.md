@@ -36,7 +36,7 @@ Containers and db will be deleted.
 
 Especially `Could not connect to a docker provider. Please start or install a docker provider.` occurs from 1 time out of 5, could not figure out why exactly yet. Please always make sure you're using `"ghcr.io/devcontainers/features/docker-in-docker:2": {},`, not v1.
 
-Also `disk limit` errors occur from time to time as well.
+Also `Your docker install has only 2163760 available disk space, less than 5000000 warning level (94% used). Please increase disk image size. ` errors occur from time to time as well.
 
 ### Technical background: workaround for vite port
 
