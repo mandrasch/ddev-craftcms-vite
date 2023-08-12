@@ -65,6 +65,9 @@ ddev craft install/craft \
   --email=admin@example.com \
   --site-name=Testsite
 
+# if craft was also installed (e.g. when you do a codespaces rebuild/full rebuild), this command
+# will just state "craft already installed". 
+
 # install the vite plugin by nystudio107
 # TODO: remove later, save activation of plugin in project config 
 ddev craft plugin/install vite
