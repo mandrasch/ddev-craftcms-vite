@@ -9,9 +9,14 @@ set -ex
 
 # ddev default commands
 # see: https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/#github-codespaces
+
+# important, since ddevs internal routing is not usable on codespaces
 ddev config global --omit-containers=ddev-router
-# this is not necessary since we already have a .ddev/config.yaml
+
+# this is not necessary since we already have a .ddev/config.yaml in this project
 # ddev config --auto
+
+# just a quick speedup trick to have all needed images available
 ddev debug download-images
 
 # Rebuilds (not full rebuilds) are a bit tricky since some docker containers 
