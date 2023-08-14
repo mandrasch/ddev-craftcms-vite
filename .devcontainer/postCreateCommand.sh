@@ -16,7 +16,7 @@ ddev config global --omit-containers=ddev-router
 # this is not necessary since we already have a .ddev/config.yaml in this project
 # ddev config --auto
 
-# just a quick speedup trick to have all needed images available
+# optional, just a quick speedup trick to have all needed images available
 ddev debug download-images
 
 # Rebuilds (not full rebuilds) are a bit tricky since some docker containers 
