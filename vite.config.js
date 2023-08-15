@@ -12,7 +12,7 @@ let origin = `${process.env.DDEV_PRIMARY_URL}:${port}`;
 // console.log(process.env);
 
 // DDEV + codespaces (without ddev-router), switch port to 5174
-// (you need to switch the port manually to HTTPS + public on codespaces)
+// (you need to switch the port manually to public on codespaces)
 if (Object.prototype.hasOwnProperty.call(process.env, 'CODESPACES')) {
     console.log('Codespaces environment detected ...');
     
