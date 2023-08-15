@@ -2,6 +2,9 @@
 #!/bin/bash
 set -ex
 
+# debug output for https://github.com/orgs/community/discussions/63776#discussioncomment-6731616
+docker context ls
+
 # This file is called in three scenarios:
 # 1. fresh creation of devcontainer
 # 2. rebuild
