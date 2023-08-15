@@ -28,15 +28,21 @@ Login via user `admin` and password `newPassword` .
 
 ### Troubleshooting
 
-See creation log via 'CMD + P > View creation log' if errors occur. Unfortunately there is no notification when this fails.
+See creation log via 'CMD + P > View creation log' if errors occur. Unfortunately there is no general error notification when this fails. But if there is only one port in the ports tab installation did not succeed.
 
-Sometimes only a rebuild or full rebuild solves problems, use
+Sometimes only a full rebuild solve the problems, use
 
 - `SHIFT + CMD + P > Codespaces: Full rebuild` 
 
 Containers and db will be deleted.
 
-Especially `Could not connect to a docker provider. Please start or install a docker provider.` occurs from 1 time out of 5, could not figure out why exactly yet. Please always make sure you're using `"ghcr.io/devcontainers/features/docker-in-docker:2": {},`, not v1.
+#### Could not connect to a docker provider
+
+The error `Could not connect to a docker provider. Please start or install a docker provider.` occurs from 1 time out of 5, could not figure out why exactly yet. Please always make sure you're using `"ghcr.io/devcontainers/features/docker-in-docker:2": {},`, not v1.
+
+- Posted it here: https://github.com/orgs/community/discussions/63776
+
+#### Disk space errors
 
 Also `Your docker install has only 2163760 available disk space, less than 5000000 warning level (94% used). Please increase disk image size. ` errors occur from time to time as well.
 
