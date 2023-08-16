@@ -16,8 +16,9 @@ You can run this in 1. GitHub Codespaces or 2. on your local laptop.
 1. Run `npm run dev`
 1. Open site (web http) via ports tab (or use `ddev launch` in future (currently small bug to be fixed)).
 
-See all steps in this blog post:
+See all steps in this video and blog post:
 
+- https://www.youtube.com/watch?v=ruw24tJHB5s
 - https://dev.to/mandrasch/open-craftcms-in-github-codespaces-via-ddev-21he
 
 The port switch can take a minute. Just wait if it doesn't work instantly.
@@ -175,14 +176,19 @@ Add the following scripts to `package.json`:
 
 7. That's it, have fun!
 
+## Acknowledgements
+
+Thanks to the DDEV maintainers and DDEV open source community, especially [Randy Fay](https://github.com/rfay) for suggestions and feedback! 💚
+
+- Thanks to [@superflausch](https://github.com/superflausch) for a quick chat about Codespaces + vite + craft integration.
+- Thanks to [dotsandlines](https://craftcms.com/partners/dotsandlines) for the opportunity to learn more about codespaces usage.
+
 ## Further resources
 
 - https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
 - https://github.com/szenario-fordesigners/craft-vite-starter / https://twitter.com/thomasbendl/status/1628741476355112962
 - docker, but not ddev: https://github.com/nystudio107/spin-up-craft
-- More experiments and info about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
-- Thanks to [@superflausch](https://github.com/superflausch) for a quick chat about Codespaces + vite integration
+
+More experiments and notes about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
 
 Connect with the DDEV community on [Discord](https://discord.gg/hCZFfAMc5k)
-
-Thanks to the DDEV maintainers and DDEV open source community, especially [Randy Fay](https://github.com/rfay) for suggestions and feedback! 💚
