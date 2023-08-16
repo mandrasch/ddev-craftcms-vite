@@ -180,7 +180,7 @@ Add the following scripts to `package.json`:
 Thanks to the DDEV maintainers and DDEV open source community, especially [Randy Fay](https://github.com/rfay) for suggestions and feedback! 💚
 
 - Thanks to [@superflausch](https://github.com/superflausch) for a quick chat about Codespaces + vite + craft integration.
-- Thanks to (dotsandlines)[[https://www.dotsandlines.io/](https://craftcms.com/partners/dotsandlines)] for the opportunity to learn more about codespaces usage.
+- Thanks to [dotsandlines](https://craftcms.com/partners/dotsandlines) for the opportunity to learn more about codespaces usage.
 
 ## Further resources
 
