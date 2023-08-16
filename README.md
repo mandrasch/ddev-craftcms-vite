@@ -16,8 +16,9 @@ You can run this in 1. GitHub Codespaces or 2. on your local laptop.
 1. Run `npm run dev`
 1. Open site (web http) via ports tab (or use `ddev launch` in future (currently small bug to be fixed)).
 
-See all steps in this blog post:
+See all steps in this video and blog post:
 
+- https://www.youtube.com/watch?v=ruw24tJHB5s
 - https://dev.to/mandrasch/open-craftcms-in-github-codespaces-via-ddev-21he
 
 The port switch can take a minute. Just wait if it doesn't work instantly.
