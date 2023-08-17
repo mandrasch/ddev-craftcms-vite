@@ -4,7 +4,7 @@ set -ex
 
 # debug output for https://github.com/orgs/community/discussions/63776#discussioncomment-6731616
 docker context ls
-echo $PATH
+# echo $PATH
 docker ps
 
 # This file is called in three scenarios:
