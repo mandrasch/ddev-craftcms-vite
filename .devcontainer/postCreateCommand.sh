@@ -2,11 +2,6 @@
 #!/bin/bash
 set -ex
 
-# debug output for https://github.com/orgs/community/discussions/63776#discussioncomment-6731616
-docker context ls
-# echo $PATH
-docker ps
-
 # This file is called in three scenarios:
 # 1. fresh creation of devcontainer
 # 2. rebuild
@@ -15,18 +10,10 @@ docker ps
 # ddev default commands
 # see: https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/#github-codespaces
 
-# important, since ddevs internal routing is not usable on codespaces
-ddev config global --omit-containers=ddev-router
-
-# this is not necessary since we already have a .ddev/config.yaml in this project
-# ddev config --auto
-
-# optional, just a quick speedup trick to have all needed images available
+# download images beforehand
 ddev debug download-images
 
-# Rebuilds (not full rebuilds) are a bit tricky since some docker containers 
-# are still there on restart, maybe this needs more improvement in future.
-# See: https://github.com/ddev/ddev/issues/5071#issuecomment-1620570680
+# avoid errors on rebuilds
 ddev poweroff
 
 # Workaround for vite:
@@ -55,7 +42,8 @@ ddev start -y
 # If this is not working in future, you can use this snippet for replacement:
 # ddev exec 'sed -i "/PRIMARY_SITE_URL=/c APP_URL=$DDEV_PRIMARY_URL" .env'
 
-# Current workaround for https://github.com/ddev/ddev/issues/5256, can be removed later
+# Current workaround for https://github.com/ddev/ddev/issues/5256, 
+# can be removed later if PR is merged in next ddev version
 ddev exec 'sed -i "s/preview.app.github.dev/app.github.dev/g" .env'
 
 # normal project setup
@@ -64,9 +52,7 @@ ddev npm install
 
 # you could also perform a `ddev pull` here to get an existing remote database 
 
-# the following is just an example, you could also remove it here and run this in codespaces terminal,
-# it will just prompt for your password:
-# ddev craft install/craft --interactive=0 --username=admin --email=admin@example.com --site-name=Testsite
+# the following is just an example:
 
 # install craft via CLI
 ddev craft install/craft \
@@ -76,10 +62,12 @@ ddev craft install/craft \
   --email=admin@example.com \
   --site-name=Testsite
 
-# if craft was also installed (e.g. when you do a codespaces rebuild/full rebuild), this command
+# You could also remove it here and run this in codespaces terminal, it will just prompt for your password:
+# ddev craft install/craft --username=admin --email=admin@example.com --site-name=Testsite
+
+# If craft was also installed (e.g. when you do a codespaces rebuild/full rebuild), this command
 # will just state "craft already installed". 
 
 # install the vite plugin by nystudio107
 # TODO: remove later, save activation of plugin in project config 
 ddev craft plugin/install vite
-
