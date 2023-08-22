@@ -68,6 +68,5 @@ ddev craft install/craft \
 # If craft was also installed (e.g. when you do a codespaces rebuild/full rebuild), this command
 # will just state "craft already installed". 
 
-# install the vite plugin by nystudio107
-# TODO: remove later, save activation of plugin in project config 
+# install the vite plugin by nystudio107 after fresh install
 ddev craft plugin/install vite
