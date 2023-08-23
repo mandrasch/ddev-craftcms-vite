@@ -5,6 +5,7 @@
   "features": {
     "ghcr.io/ddev/ddev/install-ddev:latest": {}
   },
+  // TODO: is this still necessary?
   // https://code.visualstudio.com/docs/devcontainers/containers#_always-forwarding-a-port
   "forwardPorts": [5174],
   // these are just labels for codespaces ports tab, these will not create ports by default
