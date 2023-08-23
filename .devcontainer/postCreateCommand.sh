@@ -10,6 +10,9 @@ set -ex
 # ddev default commands
 # see: https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/#github-codespaces
 
+# https://github.com/ddev/ddev/pull/5290#issuecomment-1689024764
+ddev config global --omit-containers=ddev-router
+
 # download images beforehand
 ddev debug download-images
 
