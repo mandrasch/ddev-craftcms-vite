@@ -13,7 +13,7 @@ You can run this in 1. GitHub Codespaces or 2. on your local laptop.
 1. Click the button
 1. Wait for `postCreateCommand.sh` to be finished
 1. Switch vite port to public in ports tab
-1. Run `npm run dev`
+1. Run `ddev npm run dev`
 1. Open site (web http) via ports tab (or use `ddev launch` in future (currently small bug to be fixed)).
 
 See all steps in this video and blog post:
