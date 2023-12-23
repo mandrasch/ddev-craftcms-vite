@@ -10,6 +10,17 @@ set -ex
 # ddev default commands
 # see: https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/#github-codespaces
 
+# retry, see https://github.com/ddev/ddev/pull/5592
+wait_for_docker() {
+  while true; do
+    docker ps > /dev/null 2>&1 && break
+    sleep 1
+  done
+  echo "Docker is ready."
+}
+
+wait_for_docker
+
 # https://github.com/ddev/ddev/pull/5290#issuecomment-1689024764
 ddev config global --omit-containers=ddev-router
 
