@@ -73,9 +73,13 @@ ddev start && ddev composer install && ddev npm install
 ddev craft install/craft \
   --username=admin \
   --email=admin@example.com \
-  --site-name=Testsite
+  --site-name=Testsite \
+  --language=en \
+  --site-url='$DDEV_PRIMARY_URL'
 
-# already installed in composer, but needs activation:
+# you could also set the password directly via --password=
+
+# already installed in composer, but needs activation after fresh install:
 ddev craft plugin/install vite
 
 # Open your website in browser,

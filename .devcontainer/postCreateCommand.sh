@@ -72,9 +72,11 @@ ddev npm install
 ddev craft install/craft \
   --interactive=0 \
   --username=admin \
-  --password=newPassword \
+  --password=password123 \
   --email=admin@example.com \
-  --site-name=Testsite
+  --site-name=Testsite \
+  --language=en \
+  --site-url='$DDEV_PRIMARY_URL'
 
 # You could also remove it here and run this in codespaces terminal, it will just prompt for your password:
 # ddev craft install/craft --username=admin --email=admin@example.com --site-name=Testsite
