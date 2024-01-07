@@ -104,9 +104,14 @@ cd my-craft-project
 # Set up the DDEV environment:
 ddev config --project-type=craftcms --docroot=web --create-docroot
 
+# Beware - the following deletes all existing files, except .ddev/-folder
+
 # Boot the project and install the starter project:
 ddev start
 ddev composer create -y --no-scripts craftcms/craft
+
+# If you want to use the v5 alpha branch
+ddev composer create -y --no-scripts craftcms/craft=5.0.x-dev 
 
 # Run the Craft installer:
 ddev craft install
