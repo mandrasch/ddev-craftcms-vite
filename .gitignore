@@ -6,3 +6,5 @@
 
 # config file only used for exposing vite port on codespaces
 /.ddev/docker-compose.codespaces-vite.yaml
+
+config/license.key
