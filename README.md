@@ -118,7 +118,14 @@ ddev composer create -y --no-scripts craftcms/craft
 ddev composer create -y --no-scripts craftcms/craft=5.0.x-dev 
 
 # Run the Craft installer:
-ddev craft install
+ddev craft install/craft \
+  --username=admin \
+  --email=admin@example.com \
+  --site-name=Testsite \
+  --language=en \
+  --site-url='$DDEV_PRIMARY_URL'
+
+
 ddev launch
 ```
 
