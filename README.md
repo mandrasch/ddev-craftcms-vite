@@ -63,7 +63,7 @@ The site will be available here after we're finished:
 
 - https://ddev-craftcms-vite.ddev.site/
 
-These are the steps for a regular local setup (without codespaces:
+These are the steps for a regular local setup (without Codespaces):
 
 ```bash
 cd ddev-craftcms-vite/
