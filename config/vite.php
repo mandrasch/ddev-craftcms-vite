@@ -17,10 +17,21 @@ if (App::env('CODESPACES') === true) {
 }
 
 return [
+	// this will ping $devServerInternal to make sure it's running, 
+	// otherwise it falls back to web/dist/manifest.json
 	'checkDevServer' => true,
+
 	'devServerInternal' => 'http://localhost:'.$port,
 	'devServerPublic' => $devServerPublic,
-	'serverPublic' => App::env('PRIMARY_SITE_URL') . '/dist/',
 	'useDevServer' => App::env('ENVIRONMENT') === 'dev' || App::env('CRAFT_ENVIRONMENT') === 'dev',
-	// other config settings...
+
+	// the common suggestion is 'serverPublic' => App::env('PRIMARY_SITE_URL') . '/dist/', 
+	// but that can lead to CORS errors on craft sites with multiple domains. So we use this:
+	'serverPublic' => '/dist/',
+
+	// for vite v4
+	// 'manifestPath' => '@webroot/dist/manifest.json',
+
+	// for vite >= v5
+	'manifestPath' => '@webroot/dist/.vite/manifest.json'
 ];
