@@ -4,5 +4,8 @@
 .DS_Store
 /node_modules
 
+# vite builds
+/web/dist/
+
 # config file only used for exposing vite port on codespaces
 /.ddev/docker-compose.codespaces-vite.yaml
