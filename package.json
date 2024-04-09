@@ -26,5 +26,10 @@
     "sass": "^1.62.0",
     "vite": "^5.1.4",
     "vite-plugin-restart": "^0.4.0"
+  },
+  {
+    "engines": {
+      "node": "20"
+    }
   }
 }
