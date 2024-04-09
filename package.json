@@ -27,9 +27,7 @@
     "vite": "^5.1.4",
     "vite-plugin-restart": "^0.4.0"
   },
-  {
-    "engines": {
+  "engines": {
       "node": "20"
-    }
   }
 }
