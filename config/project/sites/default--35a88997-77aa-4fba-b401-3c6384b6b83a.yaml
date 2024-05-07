@@ -1,0 +1,8 @@
+baseUrl: $DDEV_PRIMARY_URL
+handle: default
+hasUrls: true
+language: en
+name: Testsite
+primary: true
+siteGroup: b150892d-9f7d-4435-84f9-31593808faed # Testsite
+sortOrder: 1
