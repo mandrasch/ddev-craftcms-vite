@@ -1,11 +1,10 @@
-dateModified: 1715104524
+dateModified: 1715105189
 email:
   fromEmail: admin@example.com
   fromName: Testsite
   transportType: craft\mail\transportadapters\Sendmail
 meta:
   __names__:
-    24c976f5-0b04-4b20-886b-ed2a5a7c1973: Common # Common
     35a88997-77aa-4fba-b401-3c6384b6b83a: Testsite # Testsite
     b150892d-9f7d-4435-84f9-31593808faed: Testsite # Testsite
 plugins:
@@ -17,7 +16,7 @@ system:
   edition: solo
   live: true
   name: Testsite
-  schemaVersion: 4.5.3.0
+  schemaVersion: 5.0.0.20
   timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false
