@@ -19,11 +19,15 @@ ddev start
 # install dependencies
 ddev composer install && ddev npm install
 
-# will only prompt for password, other settings = leave defaults
+# install craft cms
+# You can remove password from this command if you want to enter it manually
 ddev craft install/craft \
-  --username=admin \
-  --email=admin@example.com \
-  --site-name=Testsite
+  --username="admin" \
+  --email="admin@example.com" \
+  --password="password123" \
+  --site-name="Testsite" \
+  --language="en" \
+  --site-url='$DDEV_PRIMARY_URL'
 
 # already installed in composer, but needs activation:
 ddev craft plugin/install vite
@@ -176,10 +180,12 @@ Add the following scripts to `package.json`:
 6. Edited `index.twig`, added craft-vite (and created `app.js` + `app.scss` file)
 
 ```
-    {{ craft.vite.script("src/js/app.js") }} 
+    {{ craft.vite.script("src/js/app.js", false) }} 
 ```
 
 7. That's it, have fun!
+
+8. Updated from v4 to v5 https://craftcms.com/docs/5.x/upgrade.html
 
 ## Acknowledgements
 
