@@ -1,6 +1,6 @@
 # ddev-craftcms-vite 
 
-Simple demo for [CraftCMS](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
+Simple demo for [CraftCMS v5](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
 
 You can run this 1. on your local laptop or 2. on GitHub Codespaces (experimental).
 
