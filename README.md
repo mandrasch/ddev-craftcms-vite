@@ -1,12 +1,43 @@
 # ddev-craftcms-vite 
 
-Simple demo repository for [CraftCMS](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
+Simple demo for [CraftCMS](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
 
-You can run this in 1. GitHub Codespaces or 2. on your local laptop.
+You can run this 1. on your local laptop or 2. on GitHub Codespaces (experimental).
 
-📣 New: Now with Codespaces support! 📣
+## 1. Local setup (after clone)
 
-## 1. Setup in Codespaces
+The site will be available here after we're finished:
+
+- https://ddev-craftcms-vite.ddev.site/
+
+These are the first intial steps for a regular local setup:
+
+```bash
+cd ddev-craftcms-vite/
+ddev start 
+
+# install dependencies
+ddev composer install && ddev npm install
+
+# will only prompt for password, other settings = leave defaults
+ddev craft install/craft \
+  --username=admin \
+  --email=admin@example.com \
+  --site-name=Testsite
+
+# already installed in composer, but needs activation:
+ddev craft plugin/install vite
+
+# Open your website in browser, ...
+ddev launch
+
+# run local dev server (vite), ...
+ddev npm run dev
+
+# ... and hit reload in browser
+```
+
+## 2. Setup in Codespaces
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/mandrasch/ddev-craftcms-vite)
 
@@ -57,33 +88,7 @@ I implemented this via `.env`.
 
 See `.devcontainers/postCreateCommand.sh` for all steps.
 
-## 2. Local setup (after clone)
 
-The site will be available here after we're finished:
-
-- https://ddev-craftcms-vite.ddev.site/
-
-These are the steps for a regular local setup (without Codespaces):
-
-```bash
-cd ddev-craftcms-vite/
-ddev start && ddev composer install && ddev npm install
-
-# will only prompt for password, other settings = leave defaults
-ddev craft install/craft \
-  --username=admin \
-  --email=admin@example.com \
-  --site-name=Testsite
-
-# already installed in composer, but needs activation:
-ddev craft plugin/install vite
-
-# Open your website in browser,
-ddev launch
-# run local dev server (vite),
-ddev npm run dev
-# and hit reload in browser
-```
 
 ## Simulate production environment
 
