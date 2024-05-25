@@ -1,8 +1,16 @@
 # ddev-craftcms-vite 
 
+TODO: replace link
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/mandrasch/ddev-laravel-vite/tree/feat-add-gitpod)
+
 Simple demo for [CraftCMS v5](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
 
-You can run this 1. on your local laptop or 2. on GitHub Codespaces (experimental).
+You can run this 
+
+1. on your local laptop
+1. on Gitpod in your browser
+1. on GitHub Codespaces (experimental)
 
 ## 1. Local setup (after clone)
 
@@ -42,6 +50,8 @@ ddev npm run dev
 ```
 
 ## 2. Setup in Codespaces
+
+Disclaimer - May 2024: Codespaces is currently a bit buggy on startups, see https://github.com/devcontainers/features/issues/977.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/mandrasch/ddev-craftcms-vite)
 

@@ -14,6 +14,7 @@ database:
 use_dns_when_possible: true
 composer_version: "2"
 web_environment:
+    - GITPOD_WORKSPACE_URL
     - CODESPACES
     - CODESPACE_NAME
     - GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN

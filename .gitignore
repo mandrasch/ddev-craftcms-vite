@@ -7,5 +7,5 @@
 # vite builds
 /web/dist/
 
-# config file only used for exposing vite port on codespaces
-/.ddev/docker-compose.codespaces-vite.yaml
+# only needed for gitpod and codespaces
+.ddev/docker-compose.vite-workaround.yaml
