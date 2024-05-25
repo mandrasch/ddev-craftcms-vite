@@ -6,13 +6,18 @@ use craft\helpers\App;
 // Adjustments for DDEV (local) or DDEV + codespaces
 // (if you want to detect if DDEV is used, you can check App::env('IS_DDEV_PROJECT'))
 
-// default, local DDEV (via ddev-router)
+// defaults for local DDEV
 $port = 5173;
 $devServerPublic = App::env('PRIMARY_SITE_URL') . ':' . $port;
 
-// DDEV + codespaces (without ddev-router), switch to port 5174
+// Gitpod support
+if (App::env('GITPOD_WORKSPACE_URL') !== null) {
+	$gitpodWorkspaceUrl = App::env('GITPOD_WORKSPACE_URL');
+	$devServerPublic = str_replace("https://", "https://5173-", $gitpodWorkspaceUrl);
+}
+
+// Codespaces support
 if (App::env('CODESPACES') === true) {
-	$port = 5174;
 	$devServerPublic = "https://" . App::env('CODESPACE_NAME') . "-" . $port . "." . App::env('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN');
 }
 
