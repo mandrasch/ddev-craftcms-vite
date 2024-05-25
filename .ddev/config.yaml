@@ -18,7 +18,7 @@ web_environment:
     - CODESPACES
     - CODESPACE_NAME
     - GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
-nodejs_version: "20"
+nodejs_version: "20.13.1"
 corepack_enable: false
 web_extra_exposed_ports:
     - name: craft-vite
