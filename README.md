@@ -1,27 +1,28 @@
 # ddev-craftcms-vite 
 
-TODO: replace link
-
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/mandrasch/ddev-craftcms-vite/)
 
 Simple demo for [CraftCMS v5](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
 
 You can run this 
 
-1. on your local laptop
-1. on Gitpod in your browser
-1. on GitHub Codespaces (experimental)
+1. on [your local laptop](#1-local-setup)
+1. via [Gitpod in your browser](#2-gitpod)
+1. via [Codespaces (experimental)](#3-codespaces-experimental)
 
-## 1. Local setup (after clone)
+See [How was this created?](#how-was-this-created) for more information.
 
-The site will be available here after we're finished:
+## 1. Local setup
 
-- https://ddev-craftcms-vite.ddev.site/
-
-These are the first intial steps for a regular local setup:
+Install [DDEV](https://ddev.com/get-started/) and run the following commands:
 
 ```bash
+git clone https://github.com/mandrasch/ddev-craftcms-vite.git
+# or git clone git@github.com:mandrasch/ddev-craftcms-vite.git
+
 cd ddev-craftcms-vite/
+
+# automatically creates .env with correct db settings
 ddev start 
 
 # install dependencies
@@ -43,21 +44,33 @@ ddev craft plugin/install vite
 # Open your website in browser, ...
 ddev launch
 
-# run local dev server (vite), ...
+# start the local dev server (Vite), ...
 ddev npm run dev
 
-# ... and hit reload in browser
+# ... and hit reload in browser. Vite should work now 🥳
 ```
 
-## 2. Setup in Codespaces
+After first time setup, only `ddev npm run dev` is needed (after `ddev start`). 
 
-Disclaimer - May 2024: Codespaces is currently a bit buggy on startups, see https://github.com/devcontainers/features/issues/977.
+Your site is accessible via https://ddev-laravel-vite.ddev.site.
+
+You could also import a database dump via `ddev import-db --file=dump.sql.gz` or use [`ddev pull`](https://ddev.readthedocs.io/en/stable/users/providers/) to setup a project. Use `ddev sequelace` to view your database.
+
+## 2. Gitpod
+
+Just hit the button, wait for the initial setup and start developing:
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/mandrasch/ddev-craftcms-vite/)
+
+## 3. Codespaces (experimental)
+
+⚠️ Disclaimer - May 2024: Codespaces is currently a bit buggy on startups, see https://github.com/devcontainers/features/issues/977.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/mandrasch/ddev-craftcms-vite)
 
 1. Click the button
 1. Wait for `postCreateCommand.sh` to be finished
-1. Switch vite port to public in ports tab
+1. Switch Vite port to public in ports tab
 1. Run `ddev npm run dev`
 1. Open site (web http) via ports tab (or use `ddev launch` in future (currently small bug to be fixed)).
 
@@ -74,41 +87,16 @@ Login via user `admin` and password `newPassword` .
 
 ### Troubleshooting
 
-See creation log via 'CMD + P > View creation log' if errors occur. Unfortunately there is no general error notification when this fails. But if there is only one port in the ports tab installation did not succeed.
-
-Sometimes only a full rebuild solve the problems, use
+See creation log via 'CMD + P > View creation log' if errors occur. Unfortunately there is no general error notification when this fails. But if there is only one port in the ports tab installation did not succeed. Sometimes only a full rebuild solve the problems, use:
 
 - `SHIFT + CMD + P > Codespaces: Full rebuild` 
 
 Containers and db will be deleted.
 
-#### Could not connect to a docker provider
-
-The error `Could not connect to a docker provider. Please start or install a docker provider.` occurs from 1 time out of 5, could not figure out why exactly yet. Please always make sure you're using `"ghcr.io/devcontainers/features/docker-in-docker:2": {},`, not v1.
-
-- Posted it here: https://github.com/orgs/community/discussions/63776
-
-#### Disk space errors
-
-Also `Your docker install has only 2163760 available disk space, less than 5000000 warning level (94% used). Please increase disk image size. ` errors occur from time to time as well.
-
-### Technical background: workaround for vite port
-
-Since the ddev router is not used on codespaces, the vite setup requires some adjustments. To access vite we expose another port (5174) via `.ddev/docker-compose.codespaces-vite.yaml`. This file is generated on codespace start up (and gitignored). 
-
-We needed to adjust some config values in `config/vite.php` and `vite.config.js` as well when codespaces is used. If codespace is used, the new port 5174 needs to be used (instead of the port 5173 for local DDEV setups).
-
-I implemented this via `.env`. 
-
-See `.devcontainers/postCreateCommand.sh` for all steps.
-
-
-
 ## Simulate production environment
 
 1. `ddev npm run build`
 2. Switch `CRAFT_ENVIRONMENT=dev` to `CRAFT_ENVIRONMENT=production` in `.env`
-
 
 ## How was this created?
 
@@ -197,18 +185,31 @@ Add the following scripts to `package.json`:
 
 8. Updated from v4 to v5 https://craftcms.com/docs/5.x/upgrade.html
 
+## Reset the demo
+
+```bash
+# delete without snapshot
+ddev delete -O
+# reset files, beware: deletes all untracked files!
+git clean -fdx
+# reset files, but not .ddev
+git clean -fdx -e .ddev/
+```
+
 ## Acknowledgements
 
 Thanks to the DDEV maintainers and DDEV open source community, especially [Randy Fay](https://github.com/rfay) for suggestions and feedback! 💚
 
-- Thanks to [@superflausch](https://github.com/superflausch) for a quick chat about Codespaces + vite + craft integration.
-- Thanks to [dotsandlines](https://craftcms.com/partners/dotsandlines) for the opportunity to learn more about codespaces usage.
+Huge thanks to ...
+
+- [nystudio107](https://nystudio107.com/) for providing the open source Vite plugin for Craft CMS.
+- [@superflausch](https://github.com/superflausch) for a quick chat about Codespaces + Vite + craft integration.
+- [dotsandlines](https://craftcms.com/partners/dotsandlines) for the opportunity to learn more about codespaces usage.
+- [Ofer Shaal](https://github.com/shaal) for providing DrupalPod (base for Gitpod support)
 
 ## Further resources
 
-- https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
-- https://github.com/szenario-fordesigners/craft-vite-starter / https://twitter.com/thomasbendl/status/1628741476355112962
-- docker, but not ddev: https://github.com/nystudio107/spin-up-craft
+- Official plugin site: https://plugins.craftcms.com/vite
 
 More experiments and notes about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
 
