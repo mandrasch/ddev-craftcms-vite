@@ -50,7 +50,7 @@ ddev npm run dev
 # ... and hit reload in browser. Vite should work now 🥳
 ```
 
-After first time setup, only `ddev npm run dev` is needed (after `ddev start`). 
+After this first time setup, only `ddev npm run dev` is needed (after `ddev start`). 
 
 Your site is accessible via https://ddev-laravel-vite.ddev.site.
 
