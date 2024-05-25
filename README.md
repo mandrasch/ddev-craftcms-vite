@@ -2,7 +2,7 @@
 
 TODO: replace link
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/mandrasch/ddev-laravel-vite/tree/feat-add-gitpod)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/mandrasch/ddev-craftcms-vite/)
 
 Simple demo for [CraftCMS v5](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
 

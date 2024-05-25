@@ -36,7 +36,7 @@ ddev poweroff
 # is not used  on Gitpod / Codespaces, etc. The Routing is handled by Gitpod /
 # Codespaces itself. Therefore we will create an additional config file for 
 # DDEV which will expose port 5173 without ddev-router.
-cp .gitpod/templates/docker-compose.vite-workaround.yaml .ddev/.
+cp .devcontainer/templates/docker-compose.vite-workaround.yaml .ddev/.
 
 # Start the DDEV project
 # (will automatically get URL from env, adds db connection to .env)
