@@ -7,7 +7,7 @@ let origin = `${process.env.DDEV_PRIMARY_URL}:${port}`;
 
 // Gitpod support
 // env var GITPOD_WORKSPACE_URL needs to be passed through to ddev, see .ddev/config.yaml
-if(process.env.GITPOD_WORKSPACE_URL){
+if (Object.prototype.hasOwnProperty.call(process.env, 'GITPOD_WORKSPACE_URL')) {
     origin = `${process.env.GITPOD_WORKSPACE_URL}`;
     origin = origin.replace('https://', 'https://5173-');
     console.log(`Gitpod detected, set origin to ${origin}`);
