@@ -12,9 +12,9 @@ on:
     paths-ignore:
       - '**/README.md'
 
-name: verifyProjectConfig
+name: verifyInstall
 jobs:
-  verifyProjectConfig:
+  verifyInstall:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
