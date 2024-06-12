@@ -210,7 +210,7 @@ Huge thanks to ...
 ## Further resources
 
 - Official plugin site: https://plugins.craftcms.com/vite
-
-More experiments and notes about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
+- More experiments and notes about DDEV + vite: https://my-ddev-lab.mandrasch.eu/
+- Blog article: [Working with Vite in DDEV - an introduction](https://ddev.com/blog/working-with-vite-in-ddev/)
 
 Connect with the DDEV community on [Discord](https://discord.gg/hCZFfAMc5k)
