@@ -71,13 +71,14 @@ db_import_command:
     # uncomment for debug
     # set -x
 
+    # TODO: already done in step above? - clean this up 
     # import database
-    echo "Starting the database import ..."
-    ddev import-db --src=".ddev/.downloads/db.sql"
+    # echo "Starting the database import ..."
+    # ddev import-db --file=".ddev/.downloads/db.sql"
 
     # run neccessary commands for craft after we pull a db:
-    echo "Starting craft project-config/apply ..."
-    ddev craft project-config/apply
+    echo "Starting craft up ..."
+    ddev craft up
 
 files_pull_command:
   command: |
