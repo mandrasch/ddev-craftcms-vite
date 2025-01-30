@@ -1,4 +1,4 @@
-dateModified: 1715105189
+dateModified: 1738243271
 email:
   fromEmail: admin@example.com
   fromName: Testsite
@@ -16,7 +16,7 @@ system:
   edition: solo
   live: true
   name: Testsite
-  schemaVersion: 5.0.0.20
+  schemaVersion: 5.6.0.2
   timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false
