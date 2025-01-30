@@ -4,11 +4,13 @@ import ViteRestart from 'vite-plugin-restart';
 // defaults, local DDEV
 let port = 5173; 
 let origin = `${process.env.DDEV_PRIMARY_URL}:${port}`;
+let primaryUrl = process.env.DDEV_PRIMARY_URL;
 
 // Gitpod support
 // env var GITPOD_WORKSPACE_URL needs to be passed through to ddev, see .ddev/config.yaml
 if (Object.prototype.hasOwnProperty.call(process.env, 'GITPOD_WORKSPACE_URL')) {
     origin = `${process.env.GITPOD_WORKSPACE_URL}`;
+    primaryUrl = origin;
     origin = origin.replace('https://', 'https://5173-');
     console.log(`Gitpod detected, set origin to ${origin}`);
 }
@@ -18,6 +20,7 @@ if (Object.prototype.hasOwnProperty.call(process.env, 'GITPOD_WORKSPACE_URL')) {
 // You need to switch the port manually to public on codespaces after launching
 if (Object.prototype.hasOwnProperty.call(process.env, 'CODESPACES')) {
     origin = `https://${process.env.CODESPACE_NAME}-${port}.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
+    primaryUrl = origin;
     console.log('Codespaces environment detected, setting config to ', {port,origin});
     console.log("Please check that this can be opened via browser after you run 'ddev npm run dev':");
     console.log(origin + '/src/js/app.js');
@@ -49,6 +52,8 @@ export default ({ command }) => ({
         strictPort: true, 
         // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
         origin: origin,
+        // Configure CORS for the dev server (security)
+       cors: { origin: primaryUrl },
     },
     plugins: [
         ViteRestart({
