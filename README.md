@@ -54,7 +54,9 @@ ddev npm run dev
 
 After this first time setup, only `ddev npm run dev` is needed (after `ddev start`). 
 
-Your site is accessible via https://ddev-laravel-vite.ddev.site.
+Your site is accessible via https://ddev-craftcms-vite.ddev.site/ 
+
+(Second hostname: https://ddev-craftcms-vite-second-page.ddev.site/)
 
 You could also import a database dump via `ddev import-db --file=dump.sql.gz` or use [`ddev pull`](https://ddev.readthedocs.io/en/stable/users/providers/) to setup a project. Use `ddev sequelace` to view your database.
 
