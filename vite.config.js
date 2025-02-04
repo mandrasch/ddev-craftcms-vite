@@ -2,7 +2,7 @@
 import ViteRestart from 'vite-plugin-restart';
 
 // defaults, local DDEV
-let port = 5173; 
+let port = 5173;
 let origin = `${process.env.DDEV_PRIMARY_URL}:${port}`;
 let primaryUrl = process.env.DDEV_PRIMARY_URL;
 
@@ -24,7 +24,7 @@ if (Object.prototype.hasOwnProperty.call(process.env, 'CODESPACES')) {
     origin = `https://${process.env.CODESPACE_NAME}-${port}.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
     // for server.cors
     primaryUrl = `https://${process.env.CODESPACE_NAME}-8443.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
-    console.log('Codespaces environment detected, setting config to ', {port,origin});
+    console.log('Codespaces environment detected, setting config to ', { port, origin });
     console.log("Please check that this can be opened via browser after you run 'ddev npm run dev':");
     console.log(origin + '/src/js/app.js');
     console.log('If it can\'t be opened, please switch the Vite port to public in the ports tab.');
@@ -52,16 +52,18 @@ export default ({ command }) => ({
         // respond to all network requests:
         host: '0.0.0.0',
         port: port,
-        strictPort: true, 
+        strictPort: true,
         // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
         origin: origin,
-        // Configure CORS for the dev server (security)
-       cors: { origin: primaryUrl },
+        // Configure CORS for devserver (security)
+        cors: {
+            origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(localhost|\.site)(?::\d+)?$/
+        },
     },
     plugins: [
         ViteRestart({
-        restart: [
-            './templates/**/*',
-        ],
-    })]
+            restart: [
+                './templates/**/*',
+            ],
+        })]
 });
