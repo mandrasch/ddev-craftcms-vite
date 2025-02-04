@@ -10,8 +10,10 @@ let primaryUrl = process.env.DDEV_PRIMARY_URL;
 // env var GITPOD_WORKSPACE_URL needs to be passed through to ddev, see .ddev/config.yaml
 if (Object.prototype.hasOwnProperty.call(process.env, 'GITPOD_WORKSPACE_URL')) {
     origin = `${process.env.GITPOD_WORKSPACE_URL}`;
-    primaryUrl = origin;
     origin = origin.replace('https://', 'https://5173-');
+    // for server.cors
+    primaryUrl = `${process.env.GITPOD_WORKSPACE_URL}`;
+    primaryUrl = primaryUrl.replace('https://', 'https://8080-');
     console.log(`Gitpod detected, set origin to ${origin}`);
 }
 
