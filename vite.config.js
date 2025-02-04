@@ -22,7 +22,8 @@ if (Object.prototype.hasOwnProperty.call(process.env, 'GITPOD_WORKSPACE_URL')) {
 // You need to switch the port manually to public on codespaces after launching
 if (Object.prototype.hasOwnProperty.call(process.env, 'CODESPACES')) {
     origin = `https://${process.env.CODESPACE_NAME}-${port}.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
-    primaryUrl = origin;
+    // for server.cors
+    primaryUrl = `https://${process.env.CODESPACE_NAME}-8443.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`;
     console.log('Codespaces environment detected, setting config to ', {port,origin});
     console.log("Please check that this can be opened via browser after you run 'ddev npm run dev':");
     console.log(origin + '/src/js/app.js');
