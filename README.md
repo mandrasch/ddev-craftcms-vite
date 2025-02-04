@@ -4,6 +4,8 @@
 
 Simple demo for [CraftCMS v5](https://craftcms.com/) + [DDEV](https://ddev.com/), including support for [nystudio107/craft-vite](https://github.com/nystudio107/craft-vite). Have fun with it!
 
+See official tutorial: https://ddev.com/blog/working-with-vite-in-ddev/ - and open PR to craft-vite (https://github.com/nystudio107/craft-vite/pull/92)
+
 You can run this 
 
 1. on [your local laptop](#1-local-setup)
