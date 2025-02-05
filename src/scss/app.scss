@@ -6,3 +6,11 @@ p{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:blueviolet; 
 }
+
+#image-test {
+    width: 300px;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/src/images/ddev.png');
+}
