@@ -170,7 +170,9 @@ web_extra_exposed_ports:
     },
 ```
 
-5. Install npm deps, as stated here: https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
+5. Also changes are needed to `config/vite.php` (based on https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms) 
+
+6. Install npm deps, as stated here: https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms
 
 ```bash
 ddev npm init -y
@@ -189,15 +191,15 @@ Add the following scripts to `package.json`:
 
 - [ ] TODO: Is @vitejs/plugin-legacy always needed? (https://nystudio107.com/blog/using-vite-js-next-generation-frontend-tooling-with-craft-cms)
 
-6. Edited `index.twig`, added craft-vite (and created `app.js` + `app.scss` file)
+7. Edited `index.twig`, added craft-vite (and created `app.js` + `app.scss` file)
 
 ```
     {{ craft.vite.script("src/js/app.js", false) }} 
 ```
 
-7. That's it, have fun!
+8. That's it, have fun!
 
-8. Updated from v4 to v5 https://craftcms.com/docs/5.x/upgrade.html
+9. Updated from v4 to v5 https://craftcms.com/docs/5.x/upgrade.html
 
 ## Reset the demo
 
