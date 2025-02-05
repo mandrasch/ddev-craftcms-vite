@@ -157,8 +157,9 @@ web_extra_exposed_ports:
         strictPort = true,
         // origin is important, see https://nystudio107.com/docs/vite/#vite-processed-assets
         origin: `${process.env.DDEV_PRIMARY_URL}:5173`
-        // Configure CORS for the dev server (security)
-       cors: { origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(localhost|\.site)(?::\d+)?$/ },
+        // Configure CORS securely for the Vite dev server to allow requests
+      // from *.ddev.site domains, supports additional hostnames (via regex)
+      cors: { origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/ },
     },
 ```
 
