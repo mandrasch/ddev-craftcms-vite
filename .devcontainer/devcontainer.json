@@ -31,5 +31,5 @@
     }
   },
 
-  "postCreateCommand": "chmod +x ./.devcontainer/postCreateCommand.sh && ./.devcontainer/postCreateCommand.sh"
+  "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh"
 }
