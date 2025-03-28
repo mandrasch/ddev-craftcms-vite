@@ -10,7 +10,7 @@ services:
       PHP_MAX_EXECUTION_TIME: 120
       SERVER_NAME: yourdomain.com
     volumes:
-      - ./html:/var/www/web  # Assuming CraftCMS files are in the "html" directory
+      - ./web:/var/www/html  # Assuming CraftCMS files are in the "html" directory
       - ./nginx.conf:/etc/nginx/nginx.conf  # Custom Nginx configuration file
       - ./php.ini:/usr/local/etc/php/php.ini  # Optional: Custom PHP configuration
     # ports:
