@@ -13,9 +13,9 @@ services:
       - ./html:/var/www/web  # Assuming CraftCMS files are in the "html" directory
       - ./nginx.conf:/etc/nginx/nginx.conf  # Custom Nginx configuration file
       - ./php.ini:/usr/local/etc/php/php.ini  # Optional: Custom PHP configuration
-    ports:
-      - "80:80"
-      - "443:443"
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
     networks:
       - craft-network
 
