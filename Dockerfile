@@ -30,11 +30,13 @@ COPY ./ /var/www/html
 # Run Composer install to install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Ensure the correct permissions for storage and web/assets
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/web/assets
+# Switch to root to install dependencies
+USER root
 
-# Expose ports (optional, for debugging purposes)
-EXPOSE 80 443
+# Ensure the correct permissions for storage 
+RUN chown -R www-data:www-data /var/www/html/storage
 
-# Start PHP-FPM and Nginx (they are in the same container)
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]   
+# Switch back to the default user to avoid running as root
+USER www-data
+
+# TODO: is something needed here for serversideup?
