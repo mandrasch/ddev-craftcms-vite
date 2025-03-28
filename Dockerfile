@@ -10,11 +10,13 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     curl \
     git \
     unzip \
-    php8.2-bcmath \
     && apt-get clean
 
 # Install Composer globally if it's not installed
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Add bcmath for craftcms
+RUN install-php-extensions bcmath
 
 # Switch back to the default user to avoid running as root
 USER www-data
