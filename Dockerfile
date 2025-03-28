@@ -4,11 +4,13 @@ FROM serversideup/php:8.4-fpm-nginx
 # Switch to root to install dependencies
 USER root
 
+# https://serversideup.net/open-source/docker-php/docs/customizing-the-image/installing-additional-php-extensions
 # Install required dependencies
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     curl \
     git \
     unzip \
+    php8.2-bcmath \
     && apt-get clean
 
 # Install Composer globally if it's not installed
