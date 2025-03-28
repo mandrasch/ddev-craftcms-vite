@@ -20,8 +20,8 @@ USER www-data
 # Set working directory to the CraftCMS project root
 WORKDIR /var/www/html
 
-# Copy the project files to the container (CraftCMS project assumed to be in "html" directory)
-COPY ./web /var/www/html
+# Copy the project files to the container
+COPY ./ /var/www/html
 
 # Run Composer install to install dependencies
 RUN composer install --no-dev --optimize-autoloader
