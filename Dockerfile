@@ -1,6 +1,9 @@
 # Base image
 FROM serversideup/php:8.4-fpm-nginx
 
+# Switch to root to install dependencies
+USER root
+
 # Install required dependencies
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     curl \
@@ -10,6 +13,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 # Install Composer globally if it's not installed
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Switch back to the default user to avoid running as root
+USER www-data
 
 # Set working directory to the CraftCMS project root
 WORKDIR /var/www/html
