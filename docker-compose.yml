@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # PHP-FPM + Nginx service
+  php:
+    image: serversideup/php:8.2-fpm-nginx
+    container_name: php-nginx
+    environment:
+      PHP_MEMORY_LIMIT: 512M   # Example PHP config
+      PHP_MAX_EXECUTION_TIME: 120
+      SERVER_NAME: yourdomain.com
+    volumes:
+      - ./html:/var/www/web  # Assuming CraftCMS files are in the "html" directory
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Custom Nginx configuration file
+      - ./php.ini:/usr/local/etc/php/php.ini  # Optional: Custom PHP configuration
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - craft-network
+
+  # MySQL service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Change this to a strong password
+      MYSQL_DATABASE: craftdb
+      MYSQL_USER: craftuser
+      MYSQL_PASSWORD: craft_password  # Change this to a strong password
+    volumes:
+      - db_data:/var/lib/mysql  # Persist database data
+    networks:
+      - craft-network
+
+volumes:
+  db_data:
+
+networks:
+  craft-network:
+    driver: bridge
