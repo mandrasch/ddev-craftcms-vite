@@ -16,7 +16,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Add bcmath for craftcms
-RUN install-php-extensions bcmath
+RUN install-php-extensions bcmath intl
 
 # Switch back to the default user to avoid running as root
 USER www-data
