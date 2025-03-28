@@ -2,7 +2,7 @@
 FROM serversideup/php:8.4-fpm-nginx
 
 # Install required dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     curl \
     git \
     unzip \
