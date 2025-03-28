@@ -16,8 +16,8 @@ services:
     # ports:
     #   - "80:80"
     #   - "443:443"
-    networks:
-      - craft-network
+    # networks:
+    #   - craft-network
 
   # MySQL service
   mysql:
@@ -30,12 +30,12 @@ services:
       MYSQL_PASSWORD: craft_password  # Change this to a strong password
     volumes:
       - db_data:/var/lib/mysql  # Persist database data
-    networks:
-      - craft-network
+    # networks:
+    #   - craft-network
 
 volumes:
   db_data:
 
-networks:
-  craft-network:
-    driver: bridge
+# networks:
+#   craft-network:
+#     driver: bridge
