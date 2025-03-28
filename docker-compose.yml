@@ -3,7 +3,9 @@ version: '3.8'
 services:
   # PHP-FPM + Nginx service
   php:
-    image: serversideup/php:8.2-fpm-nginx
+    build:
+      context: .  # Build from the current directory where the Dockerfile is located
+      dockerfile: Dockerfile
     container_name: php-nginx
     environment:
       PHP_MEMORY_LIMIT: 512M   # Example PHP config
