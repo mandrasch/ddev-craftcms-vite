@@ -12,9 +12,12 @@ services:
       PHP_MAX_EXECUTION_TIME: 120
       SERVER_NAME: yourdomain.com
     volumes:
-      - ./web:/var/www/html  # Assuming CraftCMS files are in the "html" directory
-      - ./nginx.conf:/etc/nginx/nginx.conf  # Custom Nginx configuration file
-      - ./php.ini:/usr/local/etc/php/php.ini  # Optional: Custom PHP configuration
+      # TODO: not needed for production?
+      # - ./web:/var/www/html
+      # TODO: how can a nginx.conf be customized for serversideup?!
+      - ./nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
+      # TODO: how to properly edit php.ini?
+      # - ./php.ini:/usr/local/etc/php/php.ini  # Optional: Custom PHP configuration
     # ports:
     #   - "80:80"
     #   - "443:443"
