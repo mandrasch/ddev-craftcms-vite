@@ -15,9 +15,9 @@ services:
     volumes:
       # TODO: how can a nginx.conf be customized for serversideup?!
       - ./nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
-    ports:
-      - "80:80"
-      - "443:443"
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
     # networks:
     #   - craft-network
 
