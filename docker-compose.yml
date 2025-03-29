@@ -14,7 +14,7 @@ services:
       SERVER_NAME: yourdomain.com
     volumes:
       # TODO: how can a nginx.conf be customized for serversideup?!
-      - {$PWD}/nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
+      - ./nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
     ports:
       - "80:80"
       - "443:443"
