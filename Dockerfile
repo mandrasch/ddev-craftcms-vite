@@ -28,7 +28,7 @@ WORKDIR /var/www/html
 COPY ./ /var/www/html
 
 # Copy custom nginx.conf into the container nginx
-COPY nginx.conf /etc/nginx/conf.d/craftcms.conf
+COPY nginx-craftcms.conf /etc/nginx/conf.d/craftcms.conf
 
 # Run Composer install to install dependencies
 RUN composer install --no-dev --optimize-autoloader
