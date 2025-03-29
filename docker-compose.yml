@@ -12,7 +12,7 @@ services:
       PHP_MEMORY_LIMIT: 512M  
       PHP_MAX_EXECUTION_TIME: 120
       SERVER_NAME: yourdomain.com
-    volumes:
+    # volumes:
       # TODO: how can a nginx.conf be customized for serversideup?!
       # - ./nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
     # ports:
