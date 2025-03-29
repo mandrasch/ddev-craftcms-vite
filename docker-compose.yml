@@ -15,7 +15,7 @@ services:
       # TODO: not needed for production?
       # - ./web:/var/www/html
       # TODO: how can a nginx.conf be customized for serversideup?!
-      - ./nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
+      - {$PWD}/nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
       # TODO: how to properly edit php.ini?
       # - ./php.ini:/usr/local/etc/php/php.ini  # Optional: Custom PHP configuration
     # ports:
