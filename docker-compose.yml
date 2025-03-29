@@ -9,9 +9,11 @@ services:
     container_name: php-nginx
     environment:
       # https://serversideup.net/open-source/docker-php/docs/customizing-the-image/changing-common-php-settings
-      PHP_MEMORY_LIMIT: 512M  
-      PHP_MAX_EXECUTION_TIME: 120
-      SERVER_NAME: yourdomain.com
+      - PHP_MEMORY_LIMIT=512M  
+      - PHP_MAX_EXECUTION_TIME=120
+      - SERVER_NAME=yourdomain.com
+      # generate dynamically https://coolify.io/docs/knowledge-base/docker/compose
+      - NGINX_SERVER_NAME=$SERVICE_FQDN_PHP
     # volumes:
       # TODO: how can a nginx.conf be customized for serversideup?!
       # - ./nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
