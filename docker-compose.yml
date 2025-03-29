@@ -8,19 +8,16 @@ services:
       dockerfile: Dockerfile
     container_name: php-nginx
     environment:
-      PHP_MEMORY_LIMIT: 512M   # Example PHP config
+      # https://serversideup.net/open-source/docker-php/docs/customizing-the-image/changing-common-php-settings
+      PHP_MEMORY_LIMIT: 512M  
       PHP_MAX_EXECUTION_TIME: 120
       SERVER_NAME: yourdomain.com
     volumes:
-      # TODO: not needed for production?
-      # - ./web:/var/www/html
       # TODO: how can a nginx.conf be customized for serversideup?!
       - {$PWD}/nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
-      # TODO: how to properly edit php.ini?
-      # - ./php.ini:/usr/local/etc/php/php.ini  # Optional: Custom PHP configuration
-    # ports:
-    #   - "80:80"
-    #   - "443:443"
+    ports:
+      - "80:80"
+      - "443:443"
     # networks:
     #   - craft-network
 
