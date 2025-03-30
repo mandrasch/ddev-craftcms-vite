@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # PHP-FPM + Nginx service
+  # https://www.atlantic.net/dedicated-server-hosting/how-to-deploy-laravel-with-docker-and-docker-compose/
+  php:
+    build:
+      context: .  # Build from the current directory where the Dockerfile is located
+      dockerfile: DockerfileV2
+    container_name: php-nginx
+    environment:
+      # https://serversideup.net/open-source/docker-php/docs/customizing-the-image/changing-common-php-settings
+      - PHP_MEMORY_LIMIT=512M  
+      - PHP_MAX_EXECUTION_TIME=120
+      # inject dynamically https://coolify.io/docs/knowledge-base/docker/compose ?
+      # - APP_URL=${SERVICE_FQDN_PHP}
+    volumes:
+      - .:/var/www
+      - ./docker-compose/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    # volumes:
+      # TODO: how can a nginx.conf be customized for serversideup?!
+      # - ./nginx.conf:/etc/nginx/conf.d/craftcms.conf  # Mount the custom Nginx configuration (?!)
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    # networks:
+    #   - craft-network
+    # try env substitution, results in nginx: [emerg] open() "/etc/nginx/nginx.conf" failed (2: No such file or directory)
+    # command: >
+    #   /bin/bash -c "envsubst < /etc/nginx/conf.d/craftcms-two.conf.template > /etc/nginx/conf.d/craftcms-two.conf && nginx -g 'daemon off;'"
+
+  webserver:
+    image: nginx:alpine
+    container_name: nginx-webserver
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  # MySQL service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Change this to a strong password
+      MYSQL_DATABASE: craftdb
+      MYSQL_USER: craftuser
+      MYSQL_PASSWORD: craft_password  # Change this to a strong password
+    volumes:
+      - db_data:/var/lib/mysql  # Persist database data
+    # networks:
+    #   - craft-network
+
+volumes:
+  db_data:
+
+# networks:
+#   craft-network:
+#     driver: bridge
