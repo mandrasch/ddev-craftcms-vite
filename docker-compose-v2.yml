@@ -6,7 +6,7 @@ services:
     build:
       context: .  
       dockerfile: DockerfileV2
-    container_name: php-nginx
+    container_name: app
     environment:
       # inject dynamically https://coolify.io/docs/knowledge-base/docker/compose ?
       # - APP_URL=${SERVICE_FQDN_PHP}
