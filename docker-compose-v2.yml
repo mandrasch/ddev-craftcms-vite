@@ -9,9 +9,6 @@ services:
       dockerfile: DockerfileV2
     container_name: php-nginx
     environment:
-      # https://serversideup.net/open-source/docker-php/docs/customizing-the-image/changing-common-php-settings
-      - PHP_MEMORY_LIMIT=512M  
-      - PHP_MAX_EXECUTION_TIME=120
       # inject dynamically https://coolify.io/docs/knowledge-base/docker/compose ?
       # - APP_URL=${SERVICE_FQDN_PHP}
     volumes:
@@ -33,8 +30,9 @@ services:
     image: nginx:alpine
     container_name: nginx-webserver
     restart: unless-stopped
-    ports:
-      - "8080:80"
+    # we don't do this in coolify
+    # ports:
+    #   - "8080:80"
     volumes:
       - .:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
