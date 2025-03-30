@@ -36,8 +36,8 @@ services:
     volumes:
       - .:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
-    networks:
-      - app-network
+    # networks:
+    #   - app-network
 
   # MySQL service
   mysql:
