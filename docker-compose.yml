@@ -22,8 +22,8 @@ services:
     # networks:
     #   - craft-network
     # try env substitution
-    command: >
-      /bin/bash -c "envsubst < /etc/nginx/conf.d/craftcms-two.conf.template > /etc/nginx/conf.d/craftcms-two.conf && nginx -g 'daemon off;'"
+    # command: >
+    #   /bin/bash -c "envsubst < /etc/nginx/conf.d/craftcms-two.conf.template > /etc/nginx/conf.d/craftcms-two.conf && nginx -g 'daemon off;'"
 
   # MySQL service
   mysql:
