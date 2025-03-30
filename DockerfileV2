@@ -38,6 +38,10 @@ COPY . /var/www
 # Copy the existing application directory permissions to the working directory
 COPY --chown=www-data:www-data . /var/www
 
+# TODO: Good place to do it here?
+# Run Composer install to install dependencies
+# RUN composer install --no-dev --optimize-autoloader
+
 # Change current user to www
 USER www-data
 
