@@ -49,4 +49,5 @@ RUN chown -R www-data:www-data /var/www/craftcms/storage
 # Switch back to the default user to avoid running as root
 USER www-data
 
+# TODO: expose 443 as well?
 EXPOSE 80
