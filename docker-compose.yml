@@ -21,7 +21,7 @@ services:
     #   - "443:443"
     # networks:
     #   - craft-network
-    # try env substitution
+    # try env substitution, results in nginx: [emerg] open() "/etc/nginx/nginx.conf" failed (2: No such file or directory)
     # command: >
     #   /bin/bash -c "envsubst < /etc/nginx/conf.d/craftcms-two.conf.template > /etc/nginx/conf.d/craftcms-two.conf && nginx -g 'daemon off;'"
 

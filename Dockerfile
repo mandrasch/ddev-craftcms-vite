@@ -49,4 +49,4 @@ RUN chown -R www-data:www-data /var/www/html/storage
 # Switch back to the default user to avoid running as root
 USER www-data
 
-# TODO: is something needed here for serversideup?
+EXPOSE 80
