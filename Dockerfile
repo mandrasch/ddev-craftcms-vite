@@ -22,10 +22,10 @@ RUN install-php-extensions bcmath intl
 USER www-data
 
 # Set working directory to the CraftCMS project root
-WORKDIR /var/www/html
+WORKDIR /var/www/craftcms
 
 # Copy the project files to the container
-COPY ./ /var/www/html
+COPY ./ /var/www/craftcms
 
 # Copy custom nginx.conf into the container nginx auto-include dir
 COPY nginx-craftcms.conf /etc/nginx/conf.d/craftcms.conf
@@ -44,7 +44,7 @@ RUN composer install --no-dev --optimize-autoloader
 USER root
 
 # Ensure the correct permissions for storage 
-RUN chown -R www-data:www-data /var/www/html/storage
+RUN chown -R www-data:www-data /var/www/craftcms/storage
 
 # Switch back to the default user to avoid running as root
 USER www-data
