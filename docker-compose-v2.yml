@@ -1,11 +1,10 @@
+# https://www.atlantic.net/dedicated-server-hosting/how-to-deploy-laravel-with-docker-and-docker-compose/
 version: '3.8'
 
 services:
-  # PHP-FPM + Nginx service
-  # https://www.atlantic.net/dedicated-server-hosting/how-to-deploy-laravel-with-docker-and-docker-compose/
-  php:
+  app:
     build:
-      context: .  # Build from the current directory where the Dockerfile is located
+      context: .  
       dockerfile: DockerfileV2
     container_name: php-nginx
     environment:
@@ -37,7 +36,7 @@ services:
       - .:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     # networks:
-    #   - app-network
+    #   - craft-network
 
   # MySQL service
   mysql:
