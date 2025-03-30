@@ -31,7 +31,7 @@ COPY ./ /var/www/html
 COPY nginx-craftcms.conf /etc/nginx/conf.d/craftcms.conf
 
 # 2nd try: Copy custom nginx.conf template into the container nginx auto-include dir
-COPY nginx-craftcms-template.conf /etc/nginx/conf.d/craftcms.conf.template
+COPY nginx-craftcms-template.conf /etc/nginx/conf.d/craftcms-two.conf.template
 
 # TODO: necessary?
 # Ensure the correct permissions for nginx.conf
